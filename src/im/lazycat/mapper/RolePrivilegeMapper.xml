@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 命名空间一点要加的，它用来唯一标识一个映射文件
+     命名空间也可以在config.xml中进行统一的配置
+-->
+<mapper namespace="im.lazycat.interfaces.RolePrivilegeMapper">
+
+</mapper>

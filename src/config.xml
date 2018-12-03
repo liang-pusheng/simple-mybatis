@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--在配置中引入属性文件-->
+    <properties resource="db.properties"/>
+
+    <settings>
+        <!--此配置可以将下划线的数据库列直接映射到驼峰命名的Java对象属性中-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    
+    <!--
+        development: 开发模式
+        work: 工作模式
+    -->
+
+    <!--为类配置别名，已达到简写的目的-->
+    <typeAliases>
+        <!--为一个类配置别名-->
+        <!--<typeAlias type=" Users" alias="Users"/>-->
+        <!--为一个包下的所有类都配置别名，别名就为类名-->
+        <package name="org.mybatis.domain"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <!-- 配置数据库连接信息 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="org/mybatis/mapping/UserMapper.xml"/>
+        <!--使用注解的方式进行CRUD-->
+        <mapper class="org.mybatis.interfaces.UserMapper"/>
+
+        <mapper resource="im/lazycat/mapper/UserMapper.xml"/>
+        <mapper resource="im/lazycat/mapper/RoleMapper.xml"/>
+        <mapper resource="im/lazycat/mapper/UserRoleMapper.xml"/>
+        <mapper resource="im/lazycat/mapper/PrivilegeMapper.xml"/>
+        <mapper resource="im/lazycat/mapper/RolePrivilegeMapper.xml"/>
+        <!--每增加一个映射文件，都要添加一次，使用下面这种方式，更简单-->
+        <!--<package name="im.lazycat.interfaces"/>-->
+    </mappers>
+</configuration>
